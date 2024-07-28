@@ -53,7 +53,7 @@ const Navbar = () => {
               </span>
 
               <div className="navbar-dropdown">
-                <NavLink to='/products' className="navbar-item">
+                <NavLink to='/classes' className="navbar-item">
                   Kelas
                 </NavLink>
 
