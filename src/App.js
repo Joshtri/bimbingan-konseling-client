@@ -9,7 +9,8 @@ import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
 import Classes from "./pages/Classes/Classes";
 import AddClasses from "./pages/Classes/AddClasses";
-
+import Students from "./pages/Students/Students";
+import AddStudents from "./pages/Students/AddStudents";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
           {/* Classes */}
           <Route path="/classes" element={<Classes/>}/>
           <Route path="/classes/add" element={<AddClasses/>}/>
+
+          {/* Students */}
+          <Route path="/students" element={<Students/>}/>
+          <Route path="/students/add" element={<AddStudents/>}/>
         </Routes>
       </BrowserRouter>
     </div>

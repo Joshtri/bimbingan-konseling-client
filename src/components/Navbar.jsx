@@ -57,8 +57,8 @@ const Navbar = () => {
                   Kelas
                 </NavLink>
 
-                <NavLink  to='' className="navbar-item is-selected">
-                  Siswa
+                <NavLink  to='/students' className="navbar-item is-selected">
+                  Pelajar
                 </NavLink>
 
                 <NavLink  to='' className="navbar-item">
