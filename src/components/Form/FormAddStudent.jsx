@@ -66,6 +66,7 @@ const FormAddStudent = () => {
                             </div>
                         </div>
                     </form>
+                    <button className="button mt-3 is-success is-light">Tambahkan</button>
                 </div>
             </div>
         </div>
