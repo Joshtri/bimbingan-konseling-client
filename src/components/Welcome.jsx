@@ -8,6 +8,7 @@ const Welcome = () => {
       <h1 className="title">Dashboard</h1>
       <h2 className="subtitle">
         Welcome Back <strong>{user && user.username}</strong>
+        <p>Your id is { user && user.uuid}</p>
       </h2>
     </div>
   );

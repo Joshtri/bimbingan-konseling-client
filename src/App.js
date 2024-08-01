@@ -29,6 +29,7 @@ function App() {
           {/* Classes */}
           <Route path="/classes" element={<Classes/>}/>
           <Route path="/classes/add" element={<AddClasses/>}/>
+          {/* <Route path="/classes/add/:id"/> */}
 
           {/* Students */}
           <Route path="/students" element={<Students/>}/>
