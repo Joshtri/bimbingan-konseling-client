@@ -74,7 +74,7 @@ const FormAddStudent = () => {
                 <div className="card-content">
                     <div className="content">
                         <form onSubmit={saveStudent}>
-                            <input type="text" value={userId} onChange={(e) => setUserID(e.target.value)} />
+                            <input type="hidden" value={userId} onChange={(e) => setUserID(e.target.value)} />
 
                             <div className="field">
                                 <label className="label">Nama Pelajar</label>

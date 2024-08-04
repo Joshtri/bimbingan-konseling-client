@@ -12,7 +12,7 @@ const FormAddCounselling = () => {
     const [studentId, setStudentId] = useState("");
     const [userId, setUserID] = useState("")
     const [solution, setSolution] = useState("");
-    const [studentProblem, setStudentProblem] = useState("");
+    const [student_problem, setStudentProblem] = useState("");
     const [penalty, setPenalty] = useState("");
     const [counselling_date, setCounsellingDate] = useState("");
     const [counselling_note, setCounsellingNote] = useState("");
@@ -46,17 +46,6 @@ const FormAddCounselling = () => {
         }
     };
 
-    const handleStudentChange = (event) => {
-        const selectedStudentId = event.target.value;
-        const selectedStudent = students.find(student => student.id_student === selectedStudentId);
-        console.log('Selected student:', selectedStudent);
-        setStudentId(selectedStudentId);
-        setClassId(selectedStudent ? selectedStudent.classId : ""); // Ensure correct key is used here
-    };
-
-    const handleClassChange = (event) => {
-        setClassId(event.target.value);
-    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -64,7 +53,7 @@ const FormAddCounselling = () => {
             console.log({
                 studentId,
                 classId,
-                studentProblem,
+                student_problem,
                 penalty,
                 solution,
                 counselling_date,
@@ -75,7 +64,7 @@ const FormAddCounselling = () => {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/counselling`, {
                 studentId,
                 classId,
-                studentProblem,
+                student_problem,
                 penalty,
                 solution,
                 counselling_date,
@@ -116,11 +105,15 @@ const FormAddCounselling = () => {
                             <div className='field'>
                                 <label className="label">Nama Pelajar</label>
                                 <div className="control">
-                                    <select className='input' value={studentId} onChange={handleStudentChange}>
+                                    <select 
+                                    className='input' 
+                                    value={studentId}
+                                    onChange={(e)=> setStudentId(e.target.value)}
+                                    >
                                         <option value="">-</option>
                                         {students.map(student => (
                                             <option key={student.id_student} value={student.id_student}>
-                                                {student.name}
+                                                {student.name} - {student.id_student}
                                             </option>
                                         ))}
                                     </select>
@@ -130,7 +123,9 @@ const FormAddCounselling = () => {
                             <div className='field'>
                                 <label className="label">Kelas Pelajar</label>
                                 <div className="control">
-                                    <select className='input' value={classId} onChange={handleClassChange} >
+                                    <select className='input' value={classId}
+                                    onChange={(e)=> setClassId(e.target.value)}
+                                    >
                                         <option value="">-</option>
                                         {classes.map(classItem => (
                                             <option key={classItem.id_class} value={classItem.id_class}>
@@ -147,7 +142,7 @@ const FormAddCounselling = () => {
                                     <input
                                         type="text"
                                         className="input"
-                                        value={studentProblem}
+                                        value={student_problem}
                                         onChange={(e) => setStudentProblem(e.target.value)}
                                         placeholder="Permasalahan"
                                     />

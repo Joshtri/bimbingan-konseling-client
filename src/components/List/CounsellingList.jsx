@@ -2,9 +2,14 @@ import React,{useEffect,useState} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import BreadCrumbs from "../BreadCrumbs";
+import ConfirmModal from "../Modal/ConfirmModal";
 
 
 const CounsellingList = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [counsellingToDelete, setCounsellingToDelete] = useState(null);
+
   const [counselling, setCounselling] = useState([]);
 
   useEffect(()=>{
@@ -20,6 +25,11 @@ const CounsellingList = () => {
       throw error;
     }
   }
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCounsellingToDelete(null);
+  };
 
   const breadCrumbsItems = [
     { label:"Dashboard", href:"/dashboard", active:false},
@@ -56,7 +66,8 @@ const CounsellingList = () => {
                 <td>{counsellingItem.Class ? counsellingItem.Class.class_name : "N/A"}</td>
                 <td>{counsellingItem.student_problem}</td>
                 <td>
-                <Link to={`/counsellings/detail/${counsellingItem.id_counselling}`} className="button is-small is-link is-light mx-2">Detail</Link>
+                  <button className="button is-small is-light is-danger mx-2">Delete</button>
+                  <Link to={`/counsellings/detail/${counsellingItem.id_counselling}`} className="button is-small is-link is-light mx-2">Detail</Link>
 
                   <button className="button is-small is-info is-light">Edit</button>
                 </td>
@@ -64,6 +75,13 @@ const CounsellingList = () => {
             ))}
         </tbody>
       </table>
+      <ConfirmModal
+        titleModal={'Konfirmasi Hapus'}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        message={`Are you sure you want to delete the counselling ${counsellingToDelete?.id_counselling}?`}
+
+      />
     </div>
   )
 }
