@@ -1,0 +1,9 @@
+.flex-container {
+  display: flex;
+  justify-content: space-around; /* Menyebarkan card secara merata */
+  align-items: center; /* Menyelaraskan card secara vertikal di tengah */
+}
+
+.flex-item {
+  margin: 10px;
+}

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Layout from "./Layout";
-import FormEditUser from "../components/FormEditUser";
+import Layout from "../Layout";
+import FormEditUser from "../../components/Edit/FormEditUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/authSlice";
+import { getMe } from "../../features/authSlice";
 
 const EditUser = () => {
   const dispatch = useDispatch();

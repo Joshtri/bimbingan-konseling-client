@@ -2,44 +2,53 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ConfirmModal from "../Modal/ConfirmModal"; // Import komponen modal
-
+import BreadCrumbs from "../BreadCrumbs";
 
 const ClassList = () => {
-    const [classes, setClasses] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [classToDelete, setClassToDelete] = useState(null);
+  const [classes, setClasses] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [classToDelete, setClassToDelete] = useState(null);
 
-    useEffect(()=>{
-        getClass();
-    },[]);
+  useEffect(()=>{
+      getClass();
+  },[]);
 
   const getClass = async () => {
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/class`)
     setClasses(response.data);
   };
 
-    const handleDeleteClick = (classItem) => {
-        setClassToDelete(classItem);
-        setIsModalOpen(true);
-    };
+  const handleDeleteClick = (classItem) => {
+      setClassToDelete(classItem);
+      setIsModalOpen(true);
+  };
 
-    const confirmDelete = async () => {
-        if (classToDelete) {
-            await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/class/${classToDelete.id_class}`);
-            setClasses(classes.filter(classItem => classItem.id_class !== classToDelete.id_class));
-            closeModal();
-        }
-    };
+  const confirmDelete = async () => {
+      if (classToDelete) {
+          await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/class/${classToDelete.id_class}`);
+          setClasses(classes.filter(classItem => classItem.id_class !== classToDelete.id_class));
+          closeModal();
+      }
+  };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setClassToDelete(null);
-    };
+
+
+  const closeModal = () => {
+      setIsModalOpen(false);
+      setClassToDelete(null);
+  };
+
+  const breadcrumbItems = [
+    { label: 'Dashboard', href: '/dashboard', active: false },
+    { label: 'Data Kelas', href: '/category', active: true },
+  ]
 
   return (
     <div>
       <h1 className="title">Kelas</h1>
       <h2 className="subtitle">Daftar Kelas</h2>
+      <BreadCrumbs items={breadcrumbItems} />
+
 
       <Link to="/classes/add" className="button is-primary mb-2">
         Add New
@@ -49,7 +58,7 @@ const ClassList = () => {
         <thead>
           <tr>
             <th>No</th>
-            <th>Class Name</th>
+            <th>Nama Kelas</th>
             <th></th>
           </tr>
         </thead>

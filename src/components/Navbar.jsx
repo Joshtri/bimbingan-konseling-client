@@ -61,7 +61,7 @@ const Navbar = () => {
                   Pelajar
                 </NavLink>
 
-                <NavLink  to='' className="navbar-item">
+                <NavLink  to='/counselling' className="navbar-item">
                   Konseling
                 </NavLink>
 

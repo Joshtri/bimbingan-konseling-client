@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import Layout from "./Layout";
-import ProductList from "../components/ProductList";
+import Layout from "../Layout";
+import FormAddUser from "../../components/Form/FormAddUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/authSlice";
+import { getMe } from "../../features/authSlice";
 
-const Products = () => {
+const AddUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
+  const { isError, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -18,12 +18,15 @@ const Products = () => {
     if (isError) {
       navigate("/");
     }
-  }, [isError, navigate]);
+    if (user && user.role !== "admin") {
+      navigate("/dashboard");
+    }
+  }, [isError, user, navigate]);
   return (
     <Layout>
-      <ProductList />
+      <FormAddUser />
     </Layout>
   );
 };
 
-export default Products;
+export default AddUser;

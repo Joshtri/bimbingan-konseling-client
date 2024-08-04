@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import Layout from "./Layout";
-import FormAddUser from "../components/FormAddUser";
+import Layout from "../Layout";
+import Userlist from "../../components/Userlist";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/authSlice";
+import { getMe } from "../../features/authSlice";
 
-const AddUser = () => {
+const Users = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError, user } = useSelector((state) => state.auth);
@@ -24,9 +24,9 @@ const AddUser = () => {
   }, [isError, user, navigate]);
   return (
     <Layout>
-      <FormAddUser />
+      <Userlist />
     </Layout>
   );
 };
 
-export default AddUser;
+export default Users;
